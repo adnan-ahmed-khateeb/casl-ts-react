@@ -13,10 +13,16 @@ function App() {
     <AbilityContext.Provider value={ability}>
       <UserProvider>
         <Router>
-          <nav>
-            <Link to='/'>Form</Link>
-            <Link to='/table'>Table</Link>
-            <Link to='/form'>Form</Link>
+          <nav className='w-100 bg-green-400 h-12 flex justify-around items-center'>
+            <Link to='/' className='text-xl'>
+              Form
+            </Link>
+            <Link to='/table' className='text-xl'>
+              Table
+            </Link>
+            <Link to='/form' className='text-xl'>
+              Form
+            </Link>
           </nav>
           <Routes>
             <Route path='/' element={<Form />} />

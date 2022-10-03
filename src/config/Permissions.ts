@@ -9,8 +9,8 @@ export default function defineRulesFor(role: string) {
       can('manage', 'all');
       break;
     case 'user':
-      can('read', ['Table', 'Form']);
-      cannot('create', 'User');
+      can('read', ['Form']);
+      cannot('create', 'User'); // see Table.tsx where the create user button is not shown for 'user' userRole.
       break;
     
     default:

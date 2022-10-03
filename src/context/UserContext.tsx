@@ -12,7 +12,7 @@ export const UserContext = createContext({
 
 export const UserProvider = ({ children }: UserProps) => {
   const [user, setUser] = useState({
-    username: 'Adn',
+    username: 'Adnan',
     userRole: 'user',
     id: 3,
   });
