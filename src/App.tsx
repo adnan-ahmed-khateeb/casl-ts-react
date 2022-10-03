@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useContext } from 'react';
 import './App.css';
+import Form from './components/Form';
+import { UserContext, UserProvider } from './context/UserContext';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Table from './components/Table';
+import { AbilityContext, createAbility } from './config/Can';
 
 function App() {
+  const { userRole } = useContext(UserContext);
+  const ability = createAbility(userRole);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AbilityContext.Provider value={ability}>
+      <UserProvider>
+        <Router>
+          <nav>
+            <Link to='/'>Form</Link>
+            <Link to='/table'>Table</Link>
+            <Link to='/form'>Form</Link>
+          </nav>
+          <Routes>
+            <Route path='/' element={<Form />} />
+            <Route path='/form' element={<Form />} />
+            <Route path='/table' element={<Table />} />
+          </Routes>
+        </Router>
+      </UserProvider>
+    </AbilityContext.Provider>
   );
 }
 
