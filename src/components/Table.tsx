@@ -1,5 +1,7 @@
 import React from 'react';
 import { Can } from '../config/Can';
+import NoAccess from './NoAccess';
+import TableComponent from './TableComponent';
 
 const Table: React.FC = () => {
   return (
@@ -7,17 +9,7 @@ const Table: React.FC = () => {
       <Can I='read' a='Table' passThrough>
         {/* passThrough: renders children in spite of what ability.can returns. 
         This is useful for creating custom components based on Can.  */}
-        {(allowed) =>
-          allowed ? (
-            <h1 className='m-auto text-3xl w-fit'>
-              Some info only the admin can see{' '}
-            </h1>
-          ) : (
-            <h1 className='m-auto text-3xl w-fit'>
-              You dont have the permissions to read this section
-            </h1>
-          )
-        }
+        {(allowed) => (allowed ? <TableComponent /> : <NoAccess />)}
         {/*  */}
       </Can>
     </section>

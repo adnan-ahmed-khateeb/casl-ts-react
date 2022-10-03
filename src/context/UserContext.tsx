@@ -6,14 +6,14 @@ interface UserProps {
 
 export const UserContext = createContext({
   username: 'Adn',
-  userRole: 'user',
+  userRole: 'manager',
   id: 0,
 });
 
 export const UserProvider = ({ children }: UserProps) => {
   const [user, setUser] = useState({
     username: 'Adnan',
-    userRole: 'user',
+    userRole: 'teamLead',
     id: 3,
   });
 

@@ -13,7 +13,7 @@ function App() {
     <AbilityContext.Provider value={ability}>
       <UserProvider>
         <Router>
-          <nav className='w-100 bg-green-400 h-12 flex justify-around items-center'>
+          <nav className='w-100 bg-gray-700 text-white font-bold h-12 flex justify-around items-center'>
             <Link to='/' className='text-xl'>
               Form
             </Link>
