@@ -2,7 +2,6 @@ import { createMongoAbility, AbilityBuilder } from '@casl/ability';
 
 export default function defineRulesFor(role: string) {
   const {can, cannot, build} = new AbilityBuilder(createMongoAbility)
-  console.log('role:', role)
   
   switch (role) {
     case 'admin':
@@ -14,12 +13,13 @@ export default function defineRulesFor(role: string) {
       cannot('update', 'Table'); 
       break;
     case 'teamLead':
-      can(['read'], ['Table', 'Form']);
+      can(['read'], ['Table']);
       cannot(['update', 'delete'], 'Table');
       break;
     case 'manager':
       can('read', 'all');
-      can([ 'update', 'delete'], 'Table');
+      can([ 'update'], 'Table');
+      cannot('delete', 'Table');
       break;
     default:
       break;
