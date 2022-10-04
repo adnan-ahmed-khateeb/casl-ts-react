@@ -71,7 +71,7 @@ const TableComponent = () => {
               <tbody className='divide-y divide-gray-200'>
                 {data.map((row) => {
                   return (
-                    <tr>
+                    <tr key={row.id}>
                       <td className='px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap'>
                         {row.id}
                       </td>

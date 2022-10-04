@@ -1,38 +1,28 @@
 // import axios from 'axios';
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
+import { createAbility } from '../config/Can';
 interface UserProps {
   children: React.ReactNode;
 }
 
-export const UserContext = createContext({
-  username: 'Adn',
-  userRole: 'manager',
-  id: 0,
+interface UserCont {
+  userRole: string;
+  setUserRole: React.Dispatch<React.SetStateAction<string>>;
+}
+export const UserContext = createContext<UserCont>({
+  userRole: 'user',
+  setUserRole: () => {},
 });
 
 export const UserProvider = ({ children }: UserProps) => {
-  const [user, setUser] = useState({
-    username: 'Adnan',
-    userRole: 'teamLead',
-    id: 3,
-  });
-
-  //   useEffect(() => {
-  //     axios.get('http://localhost:8080/users/1').then((response) => {
-  //       // console.log(response);
-  //       console.log('response:', response.data);
-  //       setUser({
-  //         username: response.data.name,
-  //         role: response.data.role,
-  //         id: response.data.id,
-  //       });
-  //       console.log('user', user);
-  //     });
-  //   }, []);
-
+  const [userRole, setUserRole] = useState<string>('user');
+  
   return (
     <UserContext.Provider
-      value={{ username: user.username, userRole: user.userRole, id: user.id }}
+      value={{
+        userRole: userRole,
+        setUserRole: setUserRole,
+      }}
     >
       {children}
     </UserContext.Provider>
