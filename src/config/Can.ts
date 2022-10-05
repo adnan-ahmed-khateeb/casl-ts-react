@@ -1,15 +1,17 @@
 import { createContext } from 'react';
 import { createContextualCan } from '@casl/react';
-import { AnyAbility } from '@casl/ability';
-import defineRulesFor from './Permissions';
-
+import { AnyAbility, createMongoAbility } from '@casl/ability';
+import { permissions } from './PermissionsMap';
 
 const AbilityContext = createContext<AnyAbility>({} as AnyAbility);
 const Can = createContextualCan(AbilityContext.Consumer);
 
 const createAbility = (userRole: string) => {
-    const ability = defineRulesFor(userRole)
-    return ability;
-}
+  console.log('userRole:', userRole)
+  const ability = createMongoAbility(
+    permissions[userRole as keyof typeof permissions]
+  );
+  return ability;
+};
 
-export  {createAbility, AbilityContext, Can}
+export { createAbility, AbilityContext, Can };

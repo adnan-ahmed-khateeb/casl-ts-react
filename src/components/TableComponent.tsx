@@ -69,9 +69,9 @@ const TableComponent = () => {
                 </tr>
               </thead>
               <tbody className='divide-y divide-gray-200'>
-                {data.map((row) => {
+                {data.map((row, i) => {
                   return (
-                    <tr>
+                    <tr key={i}>
                       <td className='px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap'>
                         {row.id}
                       </td>
@@ -83,20 +83,14 @@ const TableComponent = () => {
                       </td>
                       <Can I='update' this='Table'>
                         <td className='px-6 py-4 text-sm font-medium text-right whitespace-nowrap'>
-                          <button
-                            className='text-green-500 hover:text-green-700'
-                            href=''
-                          >
+                          <button className='text-green-500 hover:text-green-700'>
                             Edit
                           </button>
                         </td>
                       </Can>
                       <Can I='delete' this='Table'>
                         <td className='px-6 py-4 text-sm font-medium text-right whitespace-nowrap'>
-                          <button
-                            className='text-red-500 hover:text-red-700'
-                            href='#'
-                          >
+                          <button className='text-red-500 hover:text-red-700'>
                             Delete
                           </button>
                         </td>
