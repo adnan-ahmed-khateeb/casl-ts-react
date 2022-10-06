@@ -1,6 +1,5 @@
 // import { Can } from '@casl/react';
 import { Can } from '../config/Can';
-import axios from 'axios';
 import React, { useState } from 'react';
 
 const initialFormState = {
@@ -8,7 +7,7 @@ const initialFormState = {
   role: '',
 };
 
-const Form: React.FC = () => {
+const Form: React.FC = (): JSX.Element => {
   const [formData, setFormData] = useState(initialFormState);
   const { name, role } = formData;
 
@@ -19,17 +18,9 @@ const Form: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Submitted');
-    try {
-      axios.post('http://localhost:8080/users', {
-        name: name,
-        role: role,
-      });
-    } catch (error) {
-      console.log('error:', error);
-    }
-
     setFormData(initialFormState);
   };
+  
   return (
     <Can I='read' a='Form'>
       <form className='form' onSubmit={onSubmit}>

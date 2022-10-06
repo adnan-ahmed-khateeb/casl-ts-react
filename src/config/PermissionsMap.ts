@@ -1,8 +1,8 @@
 export const permissions = {
   admin: [
     {
-      action: ['manage'],
-      subject: ['all'],
+      action: ['manage'], // what the user can do
+      subject: ['all'], // the component the user can perform the said action on
     },
   ],
   user: [
