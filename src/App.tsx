@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import Form from './components/Form';
 import { UserContext, UserProvider } from './context/UserContext';
@@ -6,10 +6,12 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Table from './components/Table';
 import { AbilityContext, createAbility } from './config/Can';
 import Home from './components/Home';
+import SelectUser from './components/SelectUser';
 
 function App() {
   const { userRole } = useContext(UserContext);
   const ability = createAbility(userRole);
+
   return (
     <UserProvider>
       <Router>
@@ -23,6 +25,9 @@ function App() {
           <Link to='/form' className='text-xl'>
             Form
           </Link>
+          <Link to='/selectuser' className='text-xl'>
+            Select User
+          </Link>
         </nav>
         {/* CASL's context provider */}
         <AbilityContext.Provider value={ability}>
@@ -30,6 +35,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/form' element={<Form />} />
             <Route path='/table' element={<Table />} />
+            <Route path='/selectuser' element={<SelectUser />} />
           </Routes>
         </AbilityContext.Provider>
       </Router>

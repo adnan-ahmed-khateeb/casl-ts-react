@@ -4,22 +4,24 @@ interface UserProps {
   children: React.ReactNode;
 }
 
-export const UserContext = createContext({
-  username: 'Adn',
-  userRole: 'manager',
-  id: 0,
+interface UserCont {
+  userRole: string;
+  setUserRole: React.Dispatch<React.SetStateAction<string>>;
+}
+export const UserContext = createContext<UserCont>({
+  userRole: 'user',
+  setUserRole: () => {},
 });
 
 export const UserProvider = ({ children }: UserProps) => {
-  const [user, setUser] = useState({
-    username: 'Adnan',
-    userRole: 'manager',
-    id: 3,
-  });
+  const [userRole, setUserRole] = useState<string>('user');
 
   return (
     <UserContext.Provider
-      value={{ username: user.username, userRole: user.userRole, id: user.id }}
+      value={{
+        userRole: userRole,
+        setUserRole: setUserRole,
+      }}
     >
       {children}
     </UserContext.Provider>
